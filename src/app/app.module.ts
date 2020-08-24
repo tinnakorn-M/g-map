@@ -1,0 +1,55 @@
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { AppComponent } from './app.component'; 
+import { AgmCoreModule } from '@agm/core'; // Modules GoogleMap in Angular
+import { ToolbarModule } from 'primeng/toolbar';
+import { AccordionModule } from 'primeng/accordion';     //accordion and accordion tab
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MenuItem } from 'primeng/api';                  //api
+
+import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './header/header.component';
+import { HeatmapComponent } from './heatmap/heatmap.component';
+import { FooterComponent } from './footer/footer.component';
+import { MapComponent } from './map/map.component';
+import { Routes, RouterModule } from '@angular/router';
+
+export const routes: Routes = [
+  {path: '',component: AppComponent},
+  {path: 'home',component: HomeComponent},
+  {path: 'header',component: HeaderComponent},
+  {path: 'footer',component: FooterComponent},
+  {path: 'map',component: MapComponent},
+  {path: 'heatmap',component: HeatmapComponent},
+  
+]
+
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    HeaderComponent,
+    HeatmapComponent,
+    FooterComponent,
+    MapComponent,
+  ],
+  imports: [
+    BrowserModule,
+    ToolbarModule,
+    AccordionModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    RouterModule.forRoot(routes),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBqQrWQglp2FubxYUX_Ta3QkOJLF5bMQNg',
+      libraries: ['visualization']
+    })
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+// https://www.producthunt.com/posts/location-history-visualizer  ที่มา อย่าลบ
+// https://www.joyofdata.de/blog/interactive-heatmaps-with-google-maps-api/  ที่มา อย่าลบ
