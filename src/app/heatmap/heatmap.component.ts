@@ -9,8 +9,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HeatmapComponent implements OnInit {
 
-  16.240584
-  103.2569
+  // 16.240584
+  // 103.2569
   lat = 16.240652812500006;
   lng = 103.25703583333335;
   zoom = 18;

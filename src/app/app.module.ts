@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component'; 
 import { AgmCoreModule } from '@agm/core'; // Modules GoogleMap in Angular
 import { ToolbarModule } from 'primeng/toolbar';
+import {ButtonModule} from 'primeng/button';
 import { AccordionModule } from 'primeng/accordion';     //accordion and accordion tab
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenuItem } from 'primeng/api';                  //api
@@ -14,6 +15,8 @@ import { HeatmapComponent } from './heatmap/heatmap.component';
 import { FooterComponent } from './footer/footer.component';
 import { MapComponent } from './map/map.component';
 import { Routes, RouterModule } from '@angular/router';
+import {PanelModule} from 'primeng/panel';
+import {CardModule} from 'primeng/card';
 
 export const routes: Routes = [
   {path: '',component: AppComponent},
@@ -39,6 +42,9 @@ export const routes: Routes = [
     BrowserModule,
     ToolbarModule,
     AccordionModule,
+    ButtonModule,
+    PanelModule,
+    CardModule,
     BrowserAnimationsModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
