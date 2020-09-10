@@ -9,7 +9,8 @@
     [longitude]="lng"
     [zoom]="zoom" 
     (mapReady)="onMapLoad($event)"
-    (mapClick)="onTest($event)"
+    (mapClick)="onChoseLocation($event)"
+    (mapRightClick)="onLoadHeatmap()"
   >
     
   <!-- <agm-marker
