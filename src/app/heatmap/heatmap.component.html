@@ -8,7 +8,8 @@
     [latitude]="lat"
     [longitude]="lng"
     [zoom]="zoom" 
-    (mapReady)="onMapLoad($event)"
+
+    (mapReady)="onMapLoad($event,$event)"
     (mapClick)="onChoseLocation($event)"
     (mapRightClick)="onLoadHeatmap()"
   >
