@@ -1,26 +1,30 @@
 <app-header></app-header>
 
-<button (click)='BT_Test_Mean()'>BT_Test_Mean</button>
-<button (click)='BT_Test_Location()'>BT_Test_Location</button>
-
 <div class='agm-map-container-inner sebm-google-map-container-inner'>
   <agm-map
     [latitude]="lat"
     [longitude]="lng"
     [zoom]="zoom" 
 
-    (mapReady)="onMapLoad($event,$event)"
+    (zoomChange)="zoomChange($event)"
+    (mapReady)="onMapLoad($event)"
     (mapClick)="onChoseLocation($event)"
-    (mapRightClick)="onLoadHeatmap()"
   >
-    
-  <!-- <agm-marker
-    [latitude]="this.alldata.latitude"
-    [longitude]="this.alldata.longitude"
+
+  <agm-marker
+    [latitude]="this.make_lat"
+    [longitude]="this.make_long"
     [markerDraggable]="true"
   >
-  </agm-marker> -->
+    <agm-info-window>
+      <h6 align="center">ค่าเฉลี่ยความแรงของสัญญาณ</h6>
+      <p align="center">
+        {{mean_latitude}}, {{mean_longitude}} <br>
+        rssi: {{mean_rssi}}, snr: {{mean_snr}} <br>
+        <a class="right" routerLink="/home">Details</a>
+      </p>
+    </agm-info-window>
+  </agm-marker>
   
   </agm-map>
-    
 </div>

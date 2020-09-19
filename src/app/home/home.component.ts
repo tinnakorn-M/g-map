@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
   async ngOnInit() {
     let info;
     var item = JSON.parse(localStorage.getItem(info));
-    console.log(item);
+    // console.log(item);
 
     this.mean_latitude = item.latitude;
     this.mean_longitude = item.longitude;
