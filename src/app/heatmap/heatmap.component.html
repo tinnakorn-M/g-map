@@ -1,21 +1,52 @@
-<app-header></app-header>
+<!-- <app-header></app-header> -->
 
 <div class='agm-map-container-inner sebm-google-map-container-inner'>
   <agm-map
-    [latitude]="lat"
-    [longitude]="lng"
+    [latitude]="this.latCenter"
+    [longitude]="this.lngCenter"
     [zoom]="zoom" 
-
+    [zoomControl]="true"
+    [disableDefaultUI]= "false"
+    [mapTypeId]="this.namesetting"
+    
     (zoomChange)="zoomChange($event)"
     (mapReady)="onMapLoad($event)"
-    (mapClick)="onChoseLocation($event)"
-  >
+    (mapClick)="onChoseLocation($event)">
+
+    <button id="Settings" class="toggle-button controls button" (click)="settings()">{{this.namesetting}}</button>  
+    
+
+  <agm-marker 
+    [latitude]="this.latCenter"
+    [longitude]="this.lngCenter"
+    [label]="'L'">
+    *ngFor="ngOnInit"
+    <agm-info-window>
+      <h6 align="center">Your Location</h6>
+      <p align="center">
+        {{this.latCenter}}, {{this.lngCenter}} <br>
+        accuracy: {{this.accuracy}}
+      </p>
+    </agm-info-window>
+  </agm-marker>
+
+  <agm-marker 
+    *ngFor="let m of markers; let i = index"
+    [latitude]="m.lat"
+    [longitude]="m.lng"
+    [label]="m.label">
+    <agm-info-window>
+      <strong>Gateway</strong>
+    </agm-info-window>
+  </agm-marker>
+
 
   <agm-marker
     [latitude]="this.make_lat"
     [longitude]="this.make_long"
-    [markerDraggable]="true"
-  >
+    [markerDraggable]="false"
+    [label]="'S'"
+    *ngIf="onChoseLocation">
     <agm-info-window>
       <h6 align="center">ค่าเฉลี่ยความแรงของสัญญาณ</h6>
       <p align="center">

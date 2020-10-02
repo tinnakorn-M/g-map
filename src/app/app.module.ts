@@ -18,14 +18,14 @@ import { Routes, RouterModule } from '@angular/router';
 import {PanelModule} from 'primeng/panel';
 import {CardModule} from 'primeng/card';
 
+
 export const routes: Routes = [
-  {path: '',component: AppComponent},
+  {path: '',component:HomeComponent},
   {path: 'home',component: HomeComponent},
   {path: 'header',component: HeaderComponent},
   {path: 'footer',component: FooterComponent},
   {path: 'map',component: MapComponent},
   {path: 'heatmap',component: HeatmapComponent},
-  
 ]
 
 

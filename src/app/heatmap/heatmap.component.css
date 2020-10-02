@@ -3,9 +3,13 @@
     height: auto!important;
 }
 agm-map {
-    height:600px;
+    height:850px;
     width:100%;
 }
 .right {
     float: right;
-  }
+}
+button{
+    height: 30px;
+    width: 70px;
+}

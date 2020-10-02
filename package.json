@@ -31,6 +31,7 @@
     "google-maps": "*",
     "heatmap.js": "*",
     "jquery": "^3.4.1",
+    "mat-icon-import": "^0.1.1",
     "moment": "^2.27.0",
     "ng2-map": "^0.16.5",
     "primeflex": "^2.0.0-rc.1",
