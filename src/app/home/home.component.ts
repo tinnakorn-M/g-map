@@ -16,6 +16,9 @@ export class HomeComponent implements OnInit {
   mean_snr;
   mean_frequency;
   mean_time;
+  distanceGW1;
+  distanceGW2;
+  fromgateway;
 
   constructor(private http: HttpClient) { } 
 
@@ -30,6 +33,9 @@ export class HomeComponent implements OnInit {
     this.mean_snr = item.snr;
     this.mean_frequency = item.frequency;
     this.mean_time = item.time;
+    this.distanceGW1 = item.distanceGW1;
+    this.distanceGW2 = item.distanceGW2;
+    this.fromgateway = item.fromgateway;
 
   }
 

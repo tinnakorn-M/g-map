@@ -13,6 +13,7 @@ export class MapsService {
   constructor(private http: HttpClient) { }
 
   getLocation() {
+    console.log('TIN');
     return this.http.get<Location>('https://ipapi.co/json/');
   }
 }

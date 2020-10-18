@@ -1,22 +1,26 @@
 <!-- <app-header></app-header> -->
+<agm-map
+  [latitude]="latCenter"
+  [longitude]="lngCenter"
+  [zoom]="zoom" 
+  [zoomControl]="true"
+  [disableDefaultUI]="false"
+  [mapTypeControl]="true"
+  [scaleControl]="true"
+  [streetViewControl]="true"
+  [fullscreenControl]="true"
+  [rotateControl]="true"
+  [minZoom]="5"
+  
+  (zoomChange)="zoomChange($event)"
+  (mapReady)="onMapLoad($event)"
+  (mapClick)="onChoseLocation($event)">
 
-<div class='agm-map-container-inner sebm-google-map-container-inner'>
-  <agm-map
-    [latitude]="this.latCenter"
-    [longitude]="this.lngCenter"
-    [zoom]="zoom" 
-    [zoomControl]="true"
-    [disableDefaultUI]= "false"
-    [mapTypeId]="this.namesetting"
-    
-    (zoomChange)="zoomChange($event)"
-    (mapReady)="onMapLoad($event)"
-    (mapClick)="onChoseLocation($event)">
-
-    <button id="Settings" class="toggle-button controls button" (click)="settings()">{{this.namesetting}}</button>  
-    
-
-  <agm-marker 
+  <button id="myLocation" class="toggle-button controls button" (click)="myLocation()">
+    <span class="material-icons">my_location</span>
+  </button>
+  
+  <!-- <agm-marker 
     [latitude]="this.latCenter"
     [longitude]="this.lngCenter"
     [label]="'L'">
@@ -28,13 +32,14 @@
         accuracy: {{this.accuracy}}
       </p>
     </agm-info-window>
-  </agm-marker>
+  </agm-marker> -->
 
   <agm-marker 
     *ngFor="let m of markers; let i = index"
     [latitude]="m.lat"
     [longitude]="m.lng"
-    [label]="m.label">
+    [label]="m.label"
+    animation="DROP">
     <agm-info-window>
       <strong>Gateway</strong>
     </agm-info-window>
@@ -45,17 +50,19 @@
     [latitude]="this.make_lat"
     [longitude]="this.make_long"
     [markerDraggable]="false"
-    [label]="'S'"
+    animation="DROP"
+    label="s"
     *ngIf="onChoseLocation">
     <agm-info-window>
       <h6 align="center">ค่าเฉลี่ยความแรงของสัญญาณ</h6>
       <p align="center">
-        {{mean_latitude}}, {{mean_longitude}} <br>
+        lat: {{mean_latitude}}, lng: {{mean_longitude}} <br>
         rssi: {{mean_rssi}}, snr: {{mean_snr}} <br>
+        GW1: {{distanceGW1}} เมตร, GW2: {{distanceGW2}} เมตร <br>
+        จากเกตเวย์: {{fromgateway}} <br>
         <a class="right" routerLink="/home">Details</a>
       </p>
     </agm-info-window>
   </agm-marker>
-  
-  </agm-map>
-</div>
+
+</agm-map>

@@ -18,6 +18,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {PanelModule} from 'primeng/panel';
 import {CardModule} from 'primeng/card';
 
+import { MatIconModule } from '@angular/material/icon';
 
 export const routes: Routes = [
   {path: '',component:HomeComponent},
@@ -28,7 +29,6 @@ export const routes: Routes = [
   {path: 'heatmap',component: HeatmapComponent},
 ]
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,8 +37,10 @@ export const routes: Routes = [
     HeatmapComponent,
     FooterComponent,
     MapComponent,
+    
   ],
   imports: [
+    MatIconModule,
     BrowserModule,
     ToolbarModule,
     AccordionModule,
@@ -53,6 +55,7 @@ export const routes: Routes = [
       libraries: ['visualization']
     })
   ],
+  
   providers: [],
   bootstrap: [AppComponent]
 })

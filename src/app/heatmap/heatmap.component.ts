@@ -7,9 +7,10 @@ import { MapsService } from '../maps.service';
 interface marker {
 	lat: number;
 	lng: number;
-	label?: string;
+  label: string;
 	draggable: boolean;
 }
+
 
 @Component({
   selector: 'app-heatmap',
@@ -19,9 +20,8 @@ interface marker {
 export class HeatmapComponent implements OnInit {
   title = "Tracker";
 
-  latCenter ;
-  lngCenter ;
-  accuracy ;
+  latCenter = 16.240381219382527;
+  lngCenter = 103.25696643137027;
   zoom = 16;
   make_lat;
   make_long;
@@ -32,14 +32,15 @@ export class HeatmapComponent implements OnInit {
   mean_snr;
   mean_frequency;
   mean_time;
-  namesetting: string = 'satellite';
-  count = 0;
+  distanceGW1;
+  distanceGW2;
+  fromgateway;
 
+  iconG = "<i class=\"pi pi-check\"></i>"
+  count = 0;
 
   public map: google.maps.Map;
   public heatmap: google.maps.visualization.HeatmapLayer; 
-  searchBox: any;
-
 
   constructor(private http: HttpClient, private maps: MapsService) { }
 
@@ -54,51 +55,45 @@ export class HeatmapComponent implements OnInit {
       console.log('location is not supported');
     }
     navigator.geolocation.getCurrentPosition((position) => {
+      console.log(position);
       this.latCenter = position.coords.latitude;
       this.lngCenter = position.coords.longitude;
-      this.accuracy = position.coords.accuracy;
-      // console.log('lat: '+this.latCenter);
-      // console.log('lat: '+this.lngCenter);
-      console.log('accuracy: '+this.accuracy);
     });
-
-    
   }
 
   
   async onChoseLocation(event){
-    let latitude = event.coords.lat;
-    let longitude = event.coords.lng;
-    this.make_lat = latitude;
-    this.make_long =longitude;
-    console.log(latitude);
-    console.log(longitude);
+    this.make_lat = event.coords.lat;
+    this.make_long =event.coords.lng;
 
     let response = await this.http
-      .get('http://202.28.34.197/LoRaTracker/meanLocation/'+JSON.stringify(latitude)+'/'+JSON.stringify(longitude)+'/'+JSON.stringify(0.00005)).toPromise();
+      .get('http://202.28.34.197/LoRaTracker/SmartMeanLocation/16.240449/103.256952/16.2466187/103.2521929/'+
+          JSON.stringify(this.make_lat)+'/'+JSON.stringify(this.make_long)+'/'+JSON.stringify(10)).toPromise();
 
     if(response){
-      this.mean_latitude = response[0]['latitude'];
-      this.mean_longitude = response[0]['longitude'];
+      this.mean_latitude = this.make_lat.toFixed(6);
+      this.mean_longitude = this.make_long.toFixed(6);
       this.mean_rssi = response[0]['rssi'];
       this.mean_snr = response[0]['snr'];
       this.mean_frequency = response[0]['frequency'];
       this.mean_time = response[0]['time'];
+      this.distanceGW1 = response[0]['distanceGW1'];
+      this.distanceGW2 = response[0]['distanceGW2'];
+      this.fromgateway = response[0]['fromgateway'];
+
+
+      console.log(this.mean_latitude);
+      console.log(this.mean_longitude);
 
       // moment.locale('EN');    
       // let date = moment(mean_time).format('L'), time= moment(mean_time).format('LTS');
       // let Date_Time = date+" "+time;
 
       let info;
-      let locals = {latitude : this.mean_latitude.toFixed(6), longitude : this.mean_longitude.toFixed(6), rssi : this.mean_rssi, snr : this.mean_snr,
-                    frequency : this.mean_frequency, time : this.mean_time};
+      let locals = {latitude : this.mean_latitude, longitude : this.mean_longitude, rssi : this.mean_rssi,
+                    snr : this.mean_snr, frequency : this.mean_frequency, time : this.mean_time, distanceGW1 : this.distanceGW1,
+                    distanceGW2 : this.distanceGW2, fromgateway : this.fromgateway};
       localStorage.setItem(info, JSON.stringify(locals)); // เก็บข้อมูลในตัวแปล locals ลงในsession
-      
-      let item = JSON.parse(localStorage.getItem(info)); // เก็บข้อมูลใน session ลงในตัวแปล item
-      this.mean_latitude = item.latitude;
-      this.mean_longitude = item.longitude;
-      this.mean_rssi = item.rssi;
-      this.mean_snr = item.snr;
     }
   }
 
@@ -112,25 +107,23 @@ export class HeatmapComponent implements OnInit {
     // console.log('heatmap ',this.heatmap);
     // console.log(z);
   }
-  settings(){
-    if(this.count == 0){
-      this.namesetting = 'hybrid';
-      this.count+=1;
-    }else if(this.count == 1){
-      this.namesetting = 'satellite';
-      this.count+=1;
+
+  myLocation(){
+    if(!navigator.geolocation){
+      console.log('location is not supported');
     }
-    else{
-      this.namesetting = 'terrain';
-      this.count = 0;
-    }
+    navigator.geolocation.getCurrentPosition((position) => {
+      console.log(position);
+      this.map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
+      this.zoom = 15;
+    });
   }
 
   async onMapLoad(mapInstance:  google.maps.Map) {
     this.map = mapInstance;
     // this.map.setCenter(new google.maps.LatLng(this.latCenter, this.lngCenter)); //16.246261 103.252502
-    this.map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(document.getElementById('Settings'));
-
+    this.map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(document.getElementById('myLocation'));
+    
     let response = await this.http.get<[]>('http://202.28.34.197/LoRaTracker/SmartLocation/'+JSON.stringify(20)).toPromise();
     let lati = Array();
     let longi = Array();
@@ -168,20 +161,20 @@ export class HeatmapComponent implements OnInit {
     this.heatmap.set('maxIntensity', this.heatmap.get('maxIntensity') ? null : 80); // ความเข้มสูงสุด 
     
   }
-
   markers: marker[] = [
 	  {
 		  lat: 16.246627494203636,
 		  lng: 103.25215825338576,
-		  label: 'GW',
+      label: 'GW',
 		  draggable: false
 	  },
 	  {
 		  lat: 16.240459186712496,
 		  lng: 103.25696399125086,
-		  label: 'GW',
+      label: 'GW',
 		  draggable: false
 	  },
   ]
+
 
 }
