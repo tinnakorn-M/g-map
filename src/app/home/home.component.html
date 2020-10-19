@@ -1,95 +1,267 @@
-<app-header></app-header>
+<!-- <app-header></app-header> -->
 <meta charset="utf-8">
-<div style="margin-top: 0.5%;">
-     <div class="container">
-          <div class="p-grid">
-               <div class="row-sm-12" style="margin-top: 3%;">
-                    <div class="col-sm-6">
-                         <p-card header="LATITUDE" [style]="{'width': '33rem', 'margin-bottom': '3em'}">
+
+<body style='margin-top: 2%'>
+
+     <div class="banner">
+          <a type="button" class="btn {{this.team}}" routerLink="/heatmap">Heatmap</a>
+          <button type="button" class="btn {{this.team}}" (click)="setting()">ทีม</button>
+     </div>
+
+     <div class="container {{this.team}}"><br>
+          <div class="p-grid p-flex-row">
+               <div class="p-col">
+                    <div class="card mb-1">
+                         <div class="card-header">คลื่นความถี่</div>
+                         <div class="card-body">
+                              <dir align="right">
+                                   <img src="../../assets/images/distance.png">
+                              </dir>
+                              <h3 class={{this.dataColor}} align="center">{{this.mean_frequency}}</h3>
+                              <p align="right">Mhz</p>
+                         </div>
+                    </div>
+               </div>
+          </div>
+
+          <div class="p-grid p-flex-row">
+               <div class="p-col">
+                    <div class="card bg-light mb-1">
+                         <div class="card-header">Header</div>
+                         <div class="card-body">
                               <dir align="right">
                                    <img src="../../assets/images/lat.jpg">
                               </dir>
-                              <h3 align="center">{{this.mean_latitude}}</h3><br>
-                         </p-card>
-                    </div>
-                    <div class="col-sm-6">
-                         <p-card header="RSSI" [style]="{'width': '33rem', 'margin-bottom': '3em'}">
-                              <dir align="right">
-                                   <img src="../../assets/images/rssi.jpg">
-                              </dir>
-                              <h3 align="center">{{this.mean_rssi}}</h3>
-                              <p align="right">dBm</p>
-                         </p-card>
-                    </div>
-                    <div class="col-sm-6">
-                         <p-card header="FREQUENCY" [style]="{'width': '33rem', 'margin-bottom': '3em'}">
-                              <dir align="right">
-                                   <img src="../../assets/images/fre.jpg">
-                              </dir>
-                              <h3 align="center">{{this.mean_frequency}}</h3>
-                              <p align="right">Mhz</p>
-                         </p-card>
-                    </div>
-                    <div class="col-sm-6">
-                         <p-card header="Gateway of MSU" [style]="{'width': '33rem', 'margin-bottom': '3em'}">
-                              <dir align="right">
-                                   <img src="../../assets/images/distance.png">
-                              </dir>
-                              <h3 align="center">{{this.distanceGW2}}</h3>
-                              <p align="right">เมตร</p>
-                         </p-card>
+                              <h3 class={{this.dataColor}} align="center">{{this.mean_latitude}}</h3><br>
+                         </div>
                     </div>
                </div>
-               
-
-               <div class="row-sm-12" style="margin-top: 3%;">
-                    
-                    <div class="col-sm-6">
-                         <p-card header="LONGITUDE" [style]="{'width': '33rem', 'margin-bottom': '3em'}">
+               <div class="p-col">
+                    <div class="card bg-light mb-1">
+                         <div class="card-header">Header</div>
+                         <div class="card-body">
                               <dir align="right">
                                    <img src="../../assets/images/long.jpg">
                               </dir>
-                              <h3 align="center">{{this.mean_longitude}}</h3><br>
-                         </p-card>
+                              <h3 class={{this.dataColor}} align="center">{{this.mean_longitude}}</h3><br>
+                         </div>
                     </div>
-                    <div class="col-sm-6">
-                         <p-card header="SNR" [style]="{'width': '33rem', 'margin-bottom': '3em'}">
+               </div>
+          </div>
+
+          <div class="p-grid p-flex-row">
+               <div class="p-col">
+                    <div class="card bg-light mb-1">
+                         <div class="card-header">ความแรงของสัญญาณ</div>
+                         <div class="card-body">
                               <dir align="right">
                                    <img src="../../assets/images/rssi.jpg">
                               </dir>
-                              <h3 align="center">{{this.mean_snr}}</h3>
-                              <p align="right">dB</p>
-                         </p-card>
+                              <h3 class={{this.dataColor}} align="center">{{this.mean_rssi}}</h3>
+                              <p align="right">dBm</p>
+                         </div>
                     </div>
-                    <div class="col-sm-6">
-                         <p-card header="TIME" [style]="{'width': '33rem', 'margin-bottom': '3em'}">
+               </div>
+               <div class="p-col">
+                    <div class="card bg-light mb-1">
+                         <div class="card-header">สัญญาณรบกวน</div>
+                         <div class="card-body">
                               <dir align="right">
-                                   <img src="../../assets/images/time.png">
+                                   <img src="../../assets/images/rssi.jpg">
                               </dir>
-                              <h3 align="center">{{this.mean_time}}</h3>
-                              <br>
-                         </p-card>
+                              <h3 class={{this.dataColor}} align="center">{{this.mean_snr}}</h3>
+                              <p align="right">dB</p>
+                         </div>
                     </div>
-                    <div class="col-sm-6">
-                         <p-card header="Gateway of Sky Kingdom" [style]="{'width': '33rem', 'margin-bottom': '3em'}">
+               </div>
+          </div>
+
+          <div class="p-grid p-flex-row">
+               <div class="p-col">
+                    <div class="card bg-light mb-1">
+                         <div class="card-header">เกตเวย์ของมหาวิทยาลัยมหาสารคาม</div>
+                         <div class="card-body">
                               <dir align="right">
                                    <img src="../../assets/images/distance.png">
                               </dir>
-                              <h3 align="center">{{this.distanceGW1}}</h3>
+                              <h3 class={{this.dataColor}} align="center">{{this.distanceGW2}}</h3>
                               <p align="right">เมตร</p>
-                         </p-card>
+                         </div>
                     </div>
                </div>
-               <div class="row-sm-12" style="margin-top: 3%;">
-                    <p-card header="Signal of Gateway" [style]="{'width': '68rem', 'margin-left': '1em', 'margin-bottom': '3em'}">
+               <div class="p-col">
+                    <div class="card bg-light mb-1">
+                         <div class="card-header">เกตเวย์ของอาณาจักรฟ้า</div>
+                         <div class="card-body">
+                              <dir align="right">
+                                   <img src="../../assets/images/distance.png">
+                              </dir>
+                              <h3 class={{this.dataColor}} align="center">{{this.distanceGW1}}</h3>
+                              <p align="right">เมตร</p>
+                         </div>
+                    </div>
+               </div>
+          </div>
+
+          <div class="p-grid p-flex-row">
+               <div class="p-col">
+                    <div class="card bg-light mb-1">
+                         <div class="card-header">สัญญาณจากเกตเวย์</div>
+                         <div class="card-body">
+                              <dir align="right">
+                                   <img src="../../assets/images/gateway.png">
+                              </dir>
+                              <h3 class={{this.dataColor}} align="center">{{this.fromgateway}}</h3>
+                         </div>
+                    </div>
+               </div>
+          </div>
+
+     </div>
+     <app-footer></app-footer>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <body style='margin-top: 2%'>
+
+     <div class="banner">
+          <a type="button" class="btn {{this.team}}" routerLink="/heatmap">Heatmap</a>
+          <button type="button" class="btn {{this.team}}" (click)="setting()">ทีม</button>
+     </div>
+
+     <div class="container {{this.team}}"><br>
+          <div class="p-grid p-flex-row">
+               <div class="p-col">
+                    <p-card class="" header="คลื่นความถี่" [style]="{'margin-top': '1%', 'margin-bottom': '1%'}">
                          <dir align="right">
-                              <img src="../../assets/images/gateway.png">
+                              <img src="../../assets/images/fre.jpg">
                          </dir>
-                         <h3 align="center">{{this.fromgateway}}</h3>
+                         <h3 class={{this.dataColor}} align="center">{{this.mean_frequency}}</h3>
+                         <p align="right">Mhz</p>
                     </p-card>
                </div>
           </div>
-     </div>
-</div>
 
-<app-footer></app-footer>
+          <div class="p-grid p-flex-row">
+               <div class="p-col">
+                    <p-card header="ละติจูด" [style]="{'margin-top': '1%', 'margin-bottom': '1%'}">
+                         <dir align="right">
+                              <img class="lat" src="../../assets/images/lat.jpg">
+                         </dir>
+                         <h3 class={{this.dataColor}} align="center">{{this.mean_latitude}}</h3><br>
+                    </p-card>
+               </div>
+               <div class="p-col">
+                    <p-card header="ลองจิจูด" [style]="{'margin-top': '1%', 'margin-bottom': '1%'}">
+                         <dir align="right">
+                              <img src="../../assets/images/long.jpg">
+                         </dir>
+                         <h3 class={{this.dataColor}} align="center">{{this.mean_longitude}}</h3><br>
+                    </p-card>
+               </div>
+          </div>
+
+          <div class="p-grid p-flex-row">
+               <div class="p-col">
+                    <p-card header="ความแรงของสัญญาณ" [style]="{'margin-top': '1%', 'margin-bottom': '1%'}">
+                         <dir align="right">
+                              <img src="../../assets/images/rssi.jpg">
+                         </dir>
+                         <h3 class={{this.dataColor}} align="center">{{this.mean_rssi}}</h3>
+                         <p align="right">dBm</p>
+                    </p-card>
+               </div>
+               <div class="p-col">
+                    <p-card header="สัญญาณรบกวน" [style]="{'margin-top': '1%', 'margin-bottom': '1%'}">
+                         <dir align="right">
+                              <img src="../../assets/images/rssi.jpg">
+                         </dir>
+                         <h3 class={{this.dataColor}} align="center">{{this.mean_snr}}</h3>
+                         <p align="right">dB</p>
+                    </p-card>
+               </div>
+          </div>
+
+          <div class="p-grid p-flex-row">
+               <div class="p-col">
+                    <p-card header="เกตเวย์ของมหาวิทยาลัยมหาสารคาม" [style]="{'margin-top': '1%', 'margin-bottom': '1%'}">
+                         <dir align="right">
+                              <img src="../../assets/images/distance.png">
+                         </dir>
+                         <h3 class={{this.dataColor}} align="center">{{this.distanceGW2}}</h3>
+                         <p align="right">เมตร</p>
+                    </p-card>
+               </div>
+               <div class="p-col">
+                    <p-card header="เกตเวย์ของอาณาจักรฟ้า" [style]="{'margin-top': '1%', 'margin-bottom': '1%'}">
+                         <dir align="right">
+                              <img src="../../assets/images/distance.png">
+                         </dir>
+                         <h3 class={{this.dataColor}} align="center">{{this.distanceGW1}}</h3>
+                         <p align="right">เมตร</p>
+                    </p-card>
+               </div>
+          </div>
+
+          <div class="p-grid p-flex-row">
+               <div class="p-col">
+                    <p-card header="สัญญาณจากเกตเวย์" [style]="{'margin-top': '1%', 'margin-bottom': '1%'}">
+                         <dir align="right">
+                              <img src="../../assets/images/gateway.png">
+                         </dir>
+                         <h3 class={{this.dataColor}} align="center">{{this.fromgateway}}</h3>
+                    </p-card>
+               </div>
+          </div>
+
+     </div>
+     <app-footer></app-footer>
+</body> -->
+
+

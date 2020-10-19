@@ -21,16 +21,65 @@
      height: 100%;
 }   */
 .bg {
-    background: url("../../assets/images/background2.jpg");
+    /* background: url("../../assets/images/background2.jpg"); */
     height: 800px;
     max-width: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     transition: all .4s ease;
-
 }
 .page-content img {
     max-width: 100%;
     height: auto!important;
+}
+/* body {
+    background-color: #fefbd8;
+  } */
+  
+.dataColor {
+    background-color: #94b8a2;
+}
+.dataColor1 {
+    background-color: #cf1937;
+}
+
+.team{
+    background-color: #94b8a2;
+}
+.team1{
+    background-color: #cf1937;
+}
+/* div {
+    border: 10px dotted black;
+    padding: 15px;
+    background: lightblue;
+    background-clip: padding-box;
+} */
+
+span {
+    background-color: #f18973;
+}
+
+.banner {
+    margin: 0;
+    font-size: 80% /*smaller*/;
+    font-weight: bold;
+    line-height: 1.1;
+    text-align: center;
+    position: fixed;
+    top: 10%;
+    /* left: auto; */
+    right: 0%;
+}
+.banner1 {
+    margin: 0;
+    font-size: 80% /*smaller*/;
+    font-weight: bold;
+    line-height: 1.1;
+    text-align: center;
+    position: fixed;
+    top: 10%;
+    /* left: auto; */
+    right: 0%;
 }

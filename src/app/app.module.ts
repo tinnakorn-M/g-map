@@ -19,9 +19,10 @@ import {PanelModule} from 'primeng/panel';
 import {CardModule} from 'primeng/card';
 
 import { MatIconModule } from '@angular/material/icon';
+import {DropdownModule} from 'primeng/dropdown';
 
 export const routes: Routes = [
-  {path: '',component:HomeComponent},
+  {path: '',component:HeatmapComponent},
   {path: 'home',component: HomeComponent},
   {path: 'header',component: HeaderComponent},
   {path: 'footer',component: FooterComponent},
@@ -40,6 +41,7 @@ export const routes: Routes = [
     
   ],
   imports: [
+    DropdownModule,
     MatIconModule,
     BrowserModule,
     ToolbarModule,
