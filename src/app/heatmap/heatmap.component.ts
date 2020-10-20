@@ -75,6 +75,12 @@ export class HeatmapComponent implements OnInit {
       this.mean_longitude = this.make_long.toFixed(6);
       this.mean_rssi = response[0]['rssi'];
       this.mean_snr = response[0]['snr'];
+
+      let max_rssi = response[0]['max_rssi'];
+      let min_rssi = response[0]['min_rssi'];
+      let max_snr = response[0]['snr'];
+      let min_snr = response[0]['snr'];
+
       this.mean_frequency = response[0]['frequency'];
       this.mean_time = response[0]['time'];
       this.distanceGW1 = response[0]['distanceGW1'];
@@ -91,8 +97,9 @@ export class HeatmapComponent implements OnInit {
 
       let info;
       let locals = {latitude : this.mean_latitude, longitude : this.mean_longitude, rssi : this.mean_rssi,
-                    snr : this.mean_snr, frequency : this.mean_frequency, time : this.mean_time, distanceGW1 : this.distanceGW1,
-                    distanceGW2 : this.distanceGW2, fromgateway : this.fromgateway};
+                    snr : this.mean_snr, frequency : this.mean_frequency, time : this.mean_time,
+                    distanceGW1 : this.distanceGW1, distanceGW2 : this.distanceGW2, fromgateway : this.fromgateway,
+                    min_rssi : min_rssi, max_rssi : max_rssi, min_snr : min_snr, max_snr : max_snr};
       localStorage.setItem(info, JSON.stringify(locals)); // เก็บข้อมูลในตัวแปล locals ลงในsession
     }
   }

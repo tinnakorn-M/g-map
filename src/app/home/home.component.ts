@@ -26,6 +26,10 @@ export class HomeComponent implements OnInit {
   distanceGW1;
   distanceGW2;
   fromgateway;
+  min_rssi;
+  max_rssi;
+  min_snr;
+  max_snr;
 
   cities1: SelectItem[];
 
@@ -35,28 +39,14 @@ export class HomeComponent implements OnInit {
 
   selectedCity2: City;
 
-  team = "team";
+  team = "background-color: rgb(148, 253, 10);";
   dataColor = "dataColor";
+  colorCard = "bg-light";
+  colortextCard = "";
+  backgroundColor = "bg-light";
+  backgrountextdColor = "";
 
-  constructor(private http: HttpClient) {
-    this.cities1 = [
-      {label:'Select City', value:null},
-      {label:'New York', value:{id:1, name: 'New York', code: 'NY'}},
-      {label:'Rome', value:{id:2, name: 'Rome', code: 'RM'}},
-      {label:'London', value:{id:3, name: 'London', code: 'LDN'}},
-      {label:'Istanbul', value:{id:4, name: 'Istanbul', code: 'IST'}},
-      {label:'Paris', value:{id:5, name: 'Paris', code: 'PRS'}}
-  ];
-
-  //An array of cities
-  this.cities2 = [
-      {name: 'New York', code: 'NY'},
-      {name: 'Rome', code: 'RM'},
-      {name: 'London', code: 'LDN'},
-      {name: 'Istanbul', code: 'IST'},
-      {name: 'Paris', code: 'PRS'}
-  ];
-   } 
+  constructor(private http: HttpClient) {} 
 
   async ngOnInit() {
     let info;
@@ -73,10 +63,84 @@ export class HomeComponent implements OnInit {
     this.distanceGW2 = item.distanceGW2;
     this.fromgateway = item.fromgateway;
 
+    this.min_rssi = item.min_rssi;
+    this.max_rssi = item.max_rssi;
+    this.min_snr = item.min_snr;
+    this.max_snr = item.max_snr;
+
   }
-  setting(){
-    this.team = "team1";
-    this.dataColor = "dataColor1";
+
+  closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+  }
+  openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+  }
+
+  light(event){
+    this.colorCard = "bg-light";
+    this.colortextCard = "";
+  }
+  dark(event){
+    this.colorCard = "bg-dark";
+    this.colortextCard = "text-white";
+  }
+  primary(event){
+    this.colorCard = "bg-primary";
+    this.colortextCard = "text-white";
+  }
+  secondary(event){
+    this.colorCard = "bg-secondary";
+    this.colortextCard = "text-white";
+  }
+  success(event){
+    this.colorCard = "bg-success";
+    this.colortextCard = "text-white";
+  }
+  danger(event){
+    this.colorCard = "bg-danger";
+    this.colortextCard = "text-white";
+  }
+  warning(event){
+    this.colorCard = "bg-warning";
+    this.colortextCard = "text-white";
+  }
+  info(event){
+    this.colorCard = "bg-info";
+    this.colortextCard = "text-white";
+  }
+
+  backgroundlight(event){
+    this.backgroundColor = "bg-light";
+    this.backgrountextdColor = "";
+  }
+  backgrounddark(event){
+    this.backgroundColor = "bg-dark";
+    this.backgrountextdColor = "text-white";
+  }
+  backgroundprimary(event){
+    this.backgroundColor = "bg-primary";
+    this.backgrountextdColor = "text-white";
+  }
+  backgroundsecondary(event){
+    this.backgroundColor = "bg-secondary";
+    this.backgrountextdColor = "text-white";
+  }
+  backgroundsuccess(event){
+    this.backgroundColor = "bg-success";
+    this.backgrountextdColor = "text-white";
+  }
+  backgrounddanger(event){
+    this.backgroundColor = "bg-danger";
+    this.backgrountextdColor = "text-white";
+  }
+  backgroundwarning(event){
+    this.backgroundColor = "bg-warning";
+    this.backgrountextdColor = "text-white";
+  }
+  backgroundinfo(event){
+    this.backgroundColor = "bg-info";
+    this.backgrountextdColor = "text-white";
   }
 
 }

@@ -1,24 +1,196 @@
-<!-- <app-header></app-header> -->
+<link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <meta charset="utf-8">
 
 <body style='margin-top: 2%'>
+     <div id="mySidenav" class="sidenav {{this.backgroundColor}}">
+          <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+          <a type="label" class="{{this.backgrountextdColor}}">สีการ์ด</a>
+          <a type="button" (click)="light($event)">
+               <div class="card bg-light mb-1">
+                    <div class="card-body bg-light">
+                    </div>
+               </div>
+          </a>
+          <a type="button" (click)="dark($event)">
+               <div class="card bg-light mb-1">
+                    <div class="card-body bg-dark">
+                    </div>
+               </div>
+          </a>
+          <a type="button" (click)="primary($event)">
+               <div class="card bg-light mb-1">
+                    <div class="card-body bg-primary">
+                    </div>
+               </div>
+          </a>
+          <a type="button" (click)="secondary($event)">
+               <div class="card bg-light mb-1">
+                    <div class="card-body bg-secondary">
+                    </div>
+               </div>
+          </a>
+          <a type="button" (click)="success($event)">
+               <div class="card bg-light mb-1">
+                    <div class="card-body bg-success">
+                    </div>
+               </div>
+          </a>
+          <a type="button" (click)="danger($event)">
+               <div class="card bg-light mb-1">
+                    <div class="card-body bg-danger">
+                    </div>
+               </div>
+          </a>
+          <a type="button" (click)="warning($event)">
+               <div class="card bg-light mb-1">
+                    <div class="card-body bg-warning">
+                    </div>
+               </div>
+          </a>
+          <a type="button" (click)="info($event)">
+               <div class="card bg-light mb-1">
+                    <div class="card-body bg-info">
+                    </div>
+               </div>
+          </a><br>
 
-     <div class="banner">
-          <a type="button" class="btn {{this.team}}" routerLink="/heatmap">Heatmap</a>
-          <button type="button" class="btn {{this.team}}" (click)="setting()">ทีม</button>
+          <a type="label" class="{{this.backgrountextdColor}}">สีพื้นหลัง</a>
+          <a type="button" (click)="backgroundlight($event)">
+               <div class="card bg-light mb-1">
+                    <div class="card-body bg-light">
+                    </div>
+               </div>
+          </a>
+          <a type="button" (click)="backgrounddark($event)">
+               <div class="card bg-light mb-1">
+                    <div class="card-body bg-dark">
+                    </div>
+               </div>
+          </a>
+          <a type="button" (click)="backgroundprimary($event)">
+               <div class="card bg-light mb-1">
+                    <div class="card-body bg-primary">
+                    </div>
+               </div>
+          </a>
+          <a type="button" (click)="backgroundsecondary($event)">
+               <div class="card bg-light mb-1">
+                    <div class="card-body bg-secondary">
+                    </div>
+               </div>
+          </a>
+          <a type="button" (click)="backgroundsuccess($event)">
+               <div class="card bg-light mb-1">
+                    <div class="card-body bg-success">
+                    </div>
+               </div>
+          </a>
+          <a type="button" (click)="backgrounddanger($event)">
+               <div class="card bg-light mb-1">
+                    <div class="card-body bg-danger">
+                    </div>
+               </div>
+          </a>
+          <a type="button" (click)="backgroundwarning($event)">
+               <div class="card bg-light mb-1">
+                    <div class="card-body bg-warning">
+                    </div>
+               </div>
+          </a>
+          <a type="button" (click)="backgroundinfo($event)">
+               <div class="card bg-light mb-1">
+                    <div class="card-body bg-info">
+                    </div>
+               </div>
+          </a><br><br><br>
+     </div>
+        
+     <div class="banner" style='z-index: 2'>
+          <a type="button"  routerLink="/heatmap">
+               <img src="./assets/images/icons8-heat-map-100.png" width="60px">
+          </a>
+     </div>
+     <div class="banner1" style='z-index: 2'>
+          <button type="button" class="btn" (click)="openNav()">
+               <img src="./assets/images/icons8-settings-512.png" width="40px">
+          </button>
      </div>
 
-     <div class="container {{this.team}}"><br>
+     <div class="container {{this.backgroundColor}}"><br>
           <div class="p-grid p-flex-row">
                <div class="p-col">
-                    <div class="card mb-1">
-                         <div class="card-header">คลื่นความถี่</div>
+                    <div class="card {{this.colorCard}} mb-1">
+                         <div class="card-header">
+                              <table class="{{this.colortextCard}}" style="width:100%">
+                                   <tr>
+                                        <td align="left"><img src="./assets/images/icons8-gps-signal-100.png" width="40px"></td>
+                                        <td><h1 class="font">ตำแหน่ง</h1></td>
+                                   </tr>
+                              </table>
+                         </div>
                          <div class="card-body">
-                              <dir align="right">
-                                   <img src="../../assets/images/distance.png">
-                              </dir>
-                              <h3 class={{this.dataColor}} align="center">{{this.mean_frequency}}</h3>
-                              <p align="right">Mhz</p>
+                              <table class="{{this.colortextCard}}" style="width:100%">
+                                   <tr>
+                                        <td align="left"><h1 class="font">ละติจูด</h1></td>
+                                        <td align="right"><h1 class="font">{{this.mean_latitude}}</h1></td>
+                                   </tr>
+                                   <tr>
+                                        <td align="left"><h1 class="font" >ลองจิจูด</h1></td>
+                                        <td align="right"><h1 class="font" >{{this.mean_longitude}}</h1></td>
+                                   </tr>
+                              </table>
+                              
+                         </div>
+                    </div>
+               </div>
+
+               <div class="p-col">
+                    <div class="card {{this.colorCard}} mb-1">
+                         <div class="card-header">
+                              <table class="{{this.colortextCard}}" style="width:100%">
+                                   <tr>
+                                        <td align="left"><img src="./assets/images/icons8-map-pinpoint-96.png" width="40px"></td>
+                                        <td><h1 class="font">ห่างจากเกตเวย์</h1></td>
+                                   </tr>
+                              </table>
+                         </div>
+                         <div class="card-body">
+                              <table class="{{this.colortextCard}}" style="width:100%">
+                                   <tr>
+                                        <td align="left"><h1 class="font">เกตเวย์ มมส</h1></td>
+                                        <td align="right"><h1 class="font">{{this.distanceGW2}} เมตร</h1></td>
+                                   </tr>
+                                   <tr>
+                                        <td align="left"><h1 class="font" >เกตเวย์ฟ้างาม</h1></td>
+                                        <td align="right"><h1 class="font" >{{this.distanceGW1}} เมตร</h1></td>
+                                   </tr>
+                              </table>
+                         </div>
+                    </div>
+               </div>
+               <div class="p-col">
+                    <div class="card {{this.colorCard}} mb-1">
+                         <div class="card-header">
+                              <table class="{{this.colortextCard}}" style="width:100%">
+                                   <tr>
+                                        <td align="left"><img src="./assets/images/icons8-frequency-64.png" width="40px"></td>
+                                        <td><h1 class="font">คลื่นความถี่</h1></td>
+                                   </tr>
+                              </table>
+                         </div>
+                         <div class="card-body">
+                              <table class="font {{this.colortextCard}}" style="width:100%">
+                                   <tr>
+                                        <td align="center">{{this.mean_frequency}}</td>
+                                   </tr>
+                              </table>
+                              <table class="font {{this.colortextCard}}" style="width:100%">
+                                   <tr class="{{this.colortextCard}}">
+                                        <td align="left" >หน่วย</td>
+                                        <td align="right">Mhz</td>
+                                   </tr>
+                              </table>
                          </div>
                     </div>
                </div>
@@ -26,92 +198,79 @@
 
           <div class="p-grid p-flex-row">
                <div class="p-col">
-                    <div class="card bg-light mb-1">
-                         <div class="card-header">Header</div>
+                    <div class="card {{this.colorCard}} mb-1">
+                         <div class="card-header">
+                              <table class="{{this.colortextCard}}" style="width:100%">
+                                   <tr>
+                                        <td align="left"><img src="./assets/images/icons8-cellular-network-100.png" width="40px"></td>
+                                        <td><h1 class="font">ความแรงของสัญญาณ</h1></td>
+                                   </tr>
+                              </table>
+                         </div>
                          <div class="card-body">
-                              <dir align="right">
-                                   <img src="../../assets/images/lat.jpg">
-                              </dir>
-                              <h3 class={{this.dataColor}} align="center">{{this.mean_latitude}}</h3><br>
+                              <h3 class="font {{this.colortextCard}}" align="center">{{this.mean_rssi}}</h3>
+                              <table class="font {{this.colortextCard}}" style="width:100%">
+                                   <tr>
+                                        <td align="left">min rssi</td>
+                                        <td align="right">max rssi</td>
+                                   </tr>
+                                   <tr>
+                                        <td align="left">{{this.min_rssi}}</td>
+                                        <td align="right">{{this.max_rssi}}</td>
+                                   </tr>
+                              </table>
+                              <table class="font {{this.colortextCard}}" style="width:100%">
+                                   <tr class="{{this.colortextCard}}">
+                                        <td align="left" >หน่วย</td>
+                                        <td align="right">dBm</td>
+                                   </tr>
+                              </table>
                          </div>
                     </div>
                </div>
                <div class="p-col">
-                    <div class="card bg-light mb-1">
-                         <div class="card-header">Header</div>
-                         <div class="card-body">
-                              <dir align="right">
-                                   <img src="../../assets/images/long.jpg">
-                              </dir>
-                              <h3 class={{this.dataColor}} align="center">{{this.mean_longitude}}</h3><br>
+                    <div class="card {{this.colorCard}} mb-1">
+                         <div class="card-header">
+                              <table class="{{this.colortextCard}}" style="width:100%">
+                                   <tr>
+                                        <td align="left"><img src="./assets/images/icons8-cellular-network-100.png" width="40px"></td>
+                                        <td><h1 class="font">สัญญาณรบกวน</h1></td>
+                                   </tr>
+                              </table>
                          </div>
-                    </div>
-               </div>
-          </div>
-
-          <div class="p-grid p-flex-row">
-               <div class="p-col">
-                    <div class="card bg-light mb-1">
-                         <div class="card-header">ความแรงของสัญญาณ</div>
                          <div class="card-body">
-                              <dir align="right">
-                                   <img src="../../assets/images/rssi.jpg">
-                              </dir>
-                              <h3 class={{this.dataColor}} align="center">{{this.mean_rssi}}</h3>
-                              <p align="right">dBm</p>
-                         </div>
-                    </div>
-               </div>
-               <div class="p-col">
-                    <div class="card bg-light mb-1">
-                         <div class="card-header">สัญญาณรบกวน</div>
-                         <div class="card-body">
-                              <dir align="right">
-                                   <img src="../../assets/images/rssi.jpg">
-                              </dir>
-                              <h3 class={{this.dataColor}} align="center">{{this.mean_snr}}</h3>
-                              <p align="right">dB</p>
-                         </div>
-                    </div>
-               </div>
-          </div>
-
-          <div class="p-grid p-flex-row">
-               <div class="p-col">
-                    <div class="card bg-light mb-1">
-                         <div class="card-header">เกตเวย์ของมหาวิทยาลัยมหาสารคาม</div>
-                         <div class="card-body">
-                              <dir align="right">
-                                   <img src="../../assets/images/distance.png">
-                              </dir>
-                              <h3 class={{this.dataColor}} align="center">{{this.distanceGW2}}</h3>
-                              <p align="right">เมตร</p>
+                              <h3 class="font {{this.colortextCard}}" align="center">{{this.mean_snr}}</h3>
+                              <table class="font {{this.colortextCard}}" style="width:100%">
+                                   <tr>
+                                        <td align="left">min snr</td>
+                                        <td align="right">max snr</td>
+                                   </tr>
+                                   <tr>
+                                        <td align="left">{{this.min_snr}}</td>
+                                        <td align="right">{{this.max_snr}}</td>
+                                   </tr>
+                              </table>
+                              <table class="font {{this.colortextCard}}" style="width:100%">
+                                   <tr class="{{this.colortextCard}}">
+                                        <td align="left" >หน่วย</td>
+                                        <td align="right">dB</td>
+                                   </tr>
+                              </table>
                          </div>
                     </div>
                </div>
                <div class="p-col">
-                    <div class="card bg-light mb-1">
-                         <div class="card-header">เกตเวย์ของอาณาจักรฟ้า</div>
-                         <div class="card-body">
-                              <dir align="right">
-                                   <img src="../../assets/images/distance.png">
-                              </dir>
-                              <h3 class={{this.dataColor}} align="center">{{this.distanceGW1}}</h3>
-                              <p align="right">เมตร</p>
+                    <div class="card {{this.colorCard}} mb-1">
+                         <div class="card-header">
+                              <table class="{{this.colortextCard}}" style="width:100%">
+                                   <tr>
+                                        <td align="left"><img src="./assets/images/icons8-satellite-signal-80.png" width="40px"></td>
+                                        <td><h1 class="font {{this.colortextCard}}">สัญญาณจากเกตเวย์</h1></td>
+                                   </tr>
+                              </table>
                          </div>
-                    </div>
-               </div>
-          </div>
-
-          <div class="p-grid p-flex-row">
-               <div class="p-col">
-                    <div class="card bg-light mb-1">
-                         <div class="card-header">สัญญาณจากเกตเวย์</div>
                          <div class="card-body">
-                              <dir align="right">
-                                   <img src="../../assets/images/gateway.png">
-                              </dir>
-                              <h3 class={{this.dataColor}} align="center">{{this.fromgateway}}</h3>
+                              <h3 class="font {{this.colortextCard}}" align="center">{{this.fromgateway}}</h3>
                          </div>
                     </div>
                </div>
@@ -149,6 +308,182 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+<body style='margin-top: 2%'>
+
+     <div class="banner" style='z-index: 1'>
+          <a type="button" class="btn {{this.team}}" routerLink="/heatmap"><h1 class="font">Heatmap</h1></a>
+          <button type="button" class="btn {{this.team}}" (click)="setting()"><h1 class="font">ธีม</h1></button>
+     </div>
+
+     <div class="container {{this.team}}"><br>
+          <div class="p-grid p-flex-row">
+               <div class="p-col">
+                    <div class="card bg-light mb-1">
+                         <div class="card-header">
+                              <table style="width:100%">
+                                   <tr>
+                                        <td align="left"><img src="../../assets/images/lat.jpg"></td>
+                                        <td><h1 class="font">ละติจูด</h1></td>
+                                   </tr>
+                              </table>
+                         </div>
+                         <div class="card-body">
+                              <h3 class="{{this.dataColor}} font" align="center">{{this.mean_latitude}}</h3>
+                         </div>
+                    </div>
+               </div>
+               <div class="p-col">
+                    <div class="card bg-light mb-1">
+                         <div class="card-header">
+                              <table style="width:100%">
+                                   <tr>
+                                        <td align="left"><img src="../../assets/images/long.jpg"></td>
+                                        <td><h1 class="font">ลองจิจูด</h1></td>
+                                   </tr>
+                              </table>
+                         </div>
+                         <div class="card-body">
+                              <h3 class="{{this.dataColor}} font" align="center">{{this.mean_longitude}}</h3>
+                         </div>
+                    </div>
+               </div>
+               <div class="p-col">
+                    <div class="card bg-light mb-1">
+                         <div class="card-header">
+                              <table style="width:100%">
+                                   <tr>
+                                        <td align="left"><img src="../../assets/images/gateway.png"></td>
+                                        <td><h1 class="font">สัญญาณจากเกตเวย์</h1></td>
+                                   </tr>
+                              </table>
+                         </div>
+                         <div class="card-body">
+                              <h3 class="{{this.dataColor}} font" align="center">{{this.fromgateway}}</h3>
+                         </div>
+                    </div>
+               </div>
+          </div>
+
+          <div class="p-grid p-flex-row">
+               <div class="p-col">
+                    <div class="card bg-light mb-1">
+                         <div class="card-header">
+                              <table style="width:100%">
+                                   <tr>
+                                        <td align="left"><img src="../../assets/images/rssi.jpg"></td>
+                                        <td><h1 class="font">ความแรงของสัญญาณ</h1></td>
+                                   </tr>
+                              </table>
+                         </div>
+                         <div class="card-body">
+                              <h3 class="{{this.dataColor}} font" align="center">{{this.mean_rssi}}</h3>
+                              <table class="{{this.dataColor}} font" style="width:100%">
+                                   <tr>
+                                        <td align="left">min rssi</td>
+                                        <td align="right">max rssi</td>
+                                   </tr>
+                                   <tr>
+                                        <td align="left">{{this.min_rssi}}</td>
+                                        <td align="right">{{this.max_rssi}}</td>
+                                   </tr>
+                              </table>
+                              <p align="right" class="font">dBm</p>
+                         </div>
+                    </div>
+               </div>
+               <div class="p-col">
+                    <div class="card bg-light mb-1">
+                         <div class="card-header">
+                              <table style="width:100%">
+                                   <tr>
+                                        <td align="left"><img src="../../assets/images/rssi.jpg"></td>
+                                        <td><h1 class="font">สัญญาณรบกวน</h1></td>
+                                   </tr>
+                              </table>
+                         </div>
+                         <div class="card-body">
+                              <h3 class="{{this.dataColor}} font" align="center">{{this.mean_snr}}</h3>
+                              <table class="{{this.dataColor}} font" style="width:100%">
+                                   <tr>
+                                        <td align="left">min snr</td>
+                                        <td align="right">max snr</td>
+                                   </tr>
+                                   <tr>
+                                        <td align="left">{{this.min_snr}}</td>
+                                        <td align="right">{{this.max_snr}}</td>
+                                   </tr>
+                              </table>
+                              <p align="right" class="font">dB</p>
+                         </div>
+                    </div>
+               </div>
+          </div>
+
+          <div class="p-grid p-flex-row">
+               <div class="p-col">
+                    <div class="card bg-light mb-1">
+                         <div class="card-header">
+                              <table style="width:100%">
+                                   <tr>
+                                        <td align="left"><img src="../../assets/images/distance.png"></td>
+                                        <td><h1 class="font">เกตเวย์ของ มมส</h1></td>
+                                   </tr>
+                              </table>
+                         </div>
+                         <div class="card-body">
+                              <h3 class="{{this.dataColor}} font" align="center">{{this.distanceGW2}}</h3>
+                              <p align="right" class="font">เมตร</p>
+                         </div>
+                    </div>
+               </div>
+               <div class="p-col">
+                    <div class="card bg-light mb-1">
+                         <div class="card-header">
+                              <table style="width:100%">
+                                   <tr>
+                                        <td align="left"><img src="../../assets/images/distance.png"></td>
+                                        <td><h1 class="font">เกตเวย์ของอาณาจักรฟ้า</h1></td>
+                                   </tr>
+                              </table>
+                         </div>
+                         <div class="card-body">
+                              <h3 class="{{this.dataColor}} font" align="center">{{this.distanceGW1}}</h3>
+                              <p align="right" class="font"> เมตร</p>
+                         </div>
+                    </div>
+               </div>
+               <div class="p-col">
+                    <div class="card bg-light mb-1">
+                         <div class="card-header">
+                              <table style="width:100%">
+                                   <tr>
+                                        <td align="left"><img src="../../assets/images/distance.png"></td>
+                                        <td><h1 class="font">คลื่นความถี่</h1></td>
+                                   </tr>
+                              </table>
+                         </div>
+                         <div class="card-body">
+                              <h3 class="{{this.dataColor}} font" align="center">{{this.mean_frequency}}</h3>
+                              <p align="right" class="font">Mhz</p>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </div>
+     <app-footer></app-footer>
+</body> -->
 
 
 
