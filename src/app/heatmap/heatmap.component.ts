@@ -35,8 +35,13 @@ export class HeatmapComponent implements OnInit {
   distanceGW1;
   distanceGW2;
   fromgateway;
+  sf = 7;
 
-  iconG = "<i class=\"pi pi-check\"></i>"
+  checkedsf7 = "";
+  checkedsf9 = "";
+  checkedsf12 = "";
+  checkedAll = "";
+
   count = 0;
 
   public map: google.maps.Map;
@@ -45,6 +50,24 @@ export class HeatmapComponent implements OnInit {
   constructor(private http: HttpClient, private maps: MapsService) { }
 
   ngOnInit() {
+    // localStorage.clear();
+    var sf = JSON.parse(localStorage.getItem('sf'));
+    console.log(sf);
+    if(sf == null){
+      localStorage.setItem('sf', JSON.stringify({sf : this.sf}));
+    }
+    var sf = JSON.parse(localStorage.getItem('sf'));
+    console.log(sf);
+    if(sf.sf == 7){
+      this.checkedsf7 = "checked";
+    }else if(sf.sf == 9){
+      this.checkedsf9 = "checked";
+    }else if(sf.sf == 12){
+      this.checkedsf12 = "checked";
+    }else{
+      this.checkedAll = "checked";
+    }
+    
     // this.maps.getLocation().subscribe(data => {
     //   console.log(data);
     //   this.latCenter = data.latitude;
@@ -66,13 +89,18 @@ export class HeatmapComponent implements OnInit {
     this.make_lat = event.coords.lat;
     this.make_long =event.coords.lng;
 
-    let response = await this.http
-      .get('http://202.28.34.197/LoRaTracker/SmartMeanLocation/16.240449/103.256952/16.2466187/103.2521929/'+
-          JSON.stringify(this.make_lat)+'/'+JSON.stringify(this.make_long)+'/'+JSON.stringify(10)).toPromise();
+    this.mean_latitude = this.make_lat.toFixed(6);
+    this.mean_longitude = this.make_long.toFixed(6);
 
+    var sf = JSON.parse(localStorage.getItem('sf'));
+    var url = 'http://202.28.34.197/LoRaTracker/SmartMeanLocation/16.240449/103.256952/16.2466187/103.2521929/'+
+      JSON.stringify(this.make_lat)+'/'+JSON.stringify(this.make_long)+'/'+JSON.stringify(sf.sf)+'/'+JSON.stringify(10);
+
+    let response = await this.http
+      .get(url).toPromise();
+
+    console.log(url);
     if(response){
-      this.mean_latitude = this.make_lat.toFixed(6);
-      this.mean_longitude = this.make_long.toFixed(6);
       this.mean_rssi = response[0]['rssi'];
       this.mean_snr = response[0]['snr'];
 
@@ -95,12 +123,11 @@ export class HeatmapComponent implements OnInit {
       // let date = moment(mean_time).format('L'), time= moment(mean_time).format('LTS');
       // let Date_Time = date+" "+time;
 
-      let info;
       let locals = {latitude : this.mean_latitude, longitude : this.mean_longitude, rssi : this.mean_rssi,
                     snr : this.mean_snr, frequency : this.mean_frequency, time : this.mean_time,
                     distanceGW1 : this.distanceGW1, distanceGW2 : this.distanceGW2, fromgateway : this.fromgateway,
                     min_rssi : min_rssi, max_rssi : max_rssi, min_snr : min_snr, max_snr : max_snr};
-      localStorage.setItem(info, JSON.stringify(locals)); // เก็บข้อมูลในตัวแปล locals ลงในsession
+      localStorage.setItem('info', JSON.stringify(locals)); // เก็บข้อมูลในตัวแปล locals ลงในsession
     }
   }
 
@@ -126,12 +153,31 @@ export class HeatmapComponent implements OnInit {
     });
   }
 
-  async onMapLoad(mapInstance:  google.maps.Map) {
-    this.map = mapInstance;
-    // this.map.setCenter(new google.maps.LatLng(this.latCenter, this.lngCenter)); //16.246261 103.252502
-    this.map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(document.getElementById('myLocation'));
-    
-    let response = await this.http.get<[]>('http://202.28.34.197/LoRaTracker/SmartLocation/'+JSON.stringify(20)).toPromise();
+  async sf7(){
+    this.sf = 7;
+    localStorage.setItem('sf', JSON.stringify({sf : this.sf}));
+    window.location.reload();
+  }
+  async sf9(){
+    this.sf = 9;
+    localStorage.setItem('sf', JSON.stringify({sf : this.sf}));
+    window.location.reload();
+
+  }
+  async sf12(){
+    this.sf = 12;
+    localStorage.setItem('sf', JSON.stringify({sf : this.sf}));
+    window.location.reload();
+  }
+  async Allsf(){
+    this.sf = 1;
+    localStorage.setItem('sf', JSON.stringify({sf : this.sf}));
+    window.location.reload();
+  }
+  
+  async SmartLocation(){
+    var sf = JSON.parse(localStorage.getItem('sf'));
+    let response = await this.http.get<[]>('http://202.28.34.197/LoRaTracker/SmartLocation/'+JSON.stringify(sf.sf)+'/'+JSON.stringify(10)).toPromise();
     let lati = Array();
     let longi = Array();
     let frequency = Array();
@@ -150,6 +196,7 @@ export class HeatmapComponent implements OnInit {
 
       LatLng.push({location: new google.maps.LatLng(response[index]['latitude'], response[index]['longitude']),weight:Math.abs(response[index]['rssi_p'])});
     }
+
     this.heatmap = new google.maps.visualization.HeatmapLayer({         
       map: this.map,
       data: LatLng
@@ -166,8 +213,19 @@ export class HeatmapComponent implements OnInit {
     this.heatmap.set('opacity', this.heatmap.get('opacity') ? null : 1); // ความทึบ
     this.heatmap.set('dissipating', this.heatmap.get('dissipating') ? null : true); // ทำให้กระจายตัว
     this.heatmap.set('maxIntensity', this.heatmap.get('maxIntensity') ? null : 80); // ความเข้มสูงสุด 
-    
   }
+
+  async onMapLoad(mapInstance:  google.maps.Map) {
+    this.map = mapInstance;
+    // this.map.setCenter(new google.maps.LatLng(this.latCenter, this.lngCenter)); //16.246261 103.252502
+    this.map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(document.getElementById('myLocation'));
+    this.map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(document.getElementById('home'));
+    this.map.controls[google.maps.ControlPosition.RIGHT_TOP].push(document.getElementById('changSF'));
+
+    await this.SmartLocation();
+  }
+
+
   markers: marker[] = [
 	  {
 		  lat: 16.246627494203636,

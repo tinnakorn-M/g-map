@@ -49,8 +49,7 @@ export class HomeComponent implements OnInit {
   constructor(private http: HttpClient) {} 
 
   async ngOnInit() {
-    let info;
-    var item = JSON.parse(localStorage.getItem(info));
+    var item = JSON.parse(localStorage.getItem('info'));
     // console.log(item);
 
     this.mean_latitude = item.latitude;
