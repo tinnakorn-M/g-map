@@ -96,8 +96,11 @@ export class HeatmapComponent implements OnInit {
 
       let max_rssi = response[0]['max_rssi'];
       let min_rssi = response[0]['min_rssi'];
-      let max_snr = response[0]['snr'];
-      let min_snr = response[0]['snr'];
+      let max_snr = response[0]['max_snr'];
+      let min_snr = response[0]['min_snr'];
+
+      let maxdistanceGW1 = response[0]['maxdistanceGW1'];
+      let maxdistanceGW2 = response[0]['maxdistanceGW2'];
 
       this.mean_frequency = response[0]['frequency'];
       this.mean_time = response[0]['time'];
@@ -113,10 +116,10 @@ export class HeatmapComponent implements OnInit {
       // let date = moment(mean_time).format('L'), time= moment(mean_time).format('LTS');
       // let Date_Time = date+" "+time;
 
-      let locals = {latitude : this.mean_latitude, longitude : this.mean_longitude, rssi : this.mean_rssi,
-                    snr : this.mean_snr, frequency : this.mean_frequency, time : this.mean_time,
-                    distanceGW1 : this.distanceGW1, distanceGW2 : this.distanceGW2, fromgateway : this.fromgateway,
-                    min_rssi : min_rssi, max_rssi : max_rssi, min_snr : min_snr, max_snr : max_snr};
+      let locals = {latitude : this.mean_latitude, longitude : this.mean_longitude, rssi : this.mean_rssi, snr : this.mean_snr, 
+                    frequency : this.mean_frequency, time : this.mean_time, distanceGW1 : this.distanceGW1, distanceGW2 : this.distanceGW2, 
+                    fromgateway : this.fromgateway, min_rssi : min_rssi, max_rssi : max_rssi, min_snr : min_snr, max_snr : max_snr, 
+                    maxdistanceGW1 : maxdistanceGW1.toFixed(2), maxdistanceGW2 : maxdistanceGW2.toFixed(2)};
       sessionStorage.setItem('info', JSON.stringify(locals)); // เก็บข้อมูลในตัวแปล locals ลงในsession
     }
   }

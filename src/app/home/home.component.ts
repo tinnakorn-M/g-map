@@ -30,6 +30,8 @@ export class HomeComponent implements OnInit {
   max_rssi;
   min_snr;
   max_snr;
+  maxdistanceGW1;
+  maxdistanceGW2;
 
   cities1: SelectItem[];
 
@@ -66,6 +68,9 @@ export class HomeComponent implements OnInit {
       this.max_rssi = item.max_rssi;
       this.min_snr = item.min_snr;
       this.max_snr = item.max_snr;
+
+      this.maxdistanceGW1 = item.maxdistanceGW1;
+      this.maxdistanceGW2 = item.maxdistanceGW2;
     }
     
   }

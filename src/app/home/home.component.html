@@ -174,21 +174,26 @@
                          <div class="card-header">
                               <table class="{{this.colortextCard}}" style="width:100%">
                                    <tr>
-                                        <td align="left"><img src="./assets/images/icons8-frequency-64.png" width="40px"></td>
-                                        <td><h1 class="font">คลื่นความถี่</h1></td>
+                                        <td align="left"><img src="./assets/images/icons8-map-pinpoint-96.png" width="40px"></td>
+                                        <td><h1 class="font">ระยะทางสูงสุด</h1></td>
                                    </tr>
                               </table>
                          </div>
                          <div class="card-body">
                               <table class="font {{this.colortextCard}}" style="width:100%">
                                    <tr>
-                                        <td align="center">{{this.mean_frequency}}</td>
+                                        <td align="left">มมส</td>
+                                        <td align="right">{{this.maxdistanceGW2}} เมตร</td>
                                    </tr>
+                                   <tr>
+                                        <td align="left">ฟ้างาม</td>
+                                        <td align="right">{{this.maxdistanceGW1}} เมตร</td>
+                                   </tr>
+                                   
                               </table>
-                              <table class="font {{this.colortextCard}}" style="width:100%">
+                              <table class="{{this.colortextCard}}" style="width:100%">
                                    <tr class="{{this.colortextCard}}">
-                                        <td align="left" >หน่วย</td>
-                                        <td align="right">Mhz</td>
+                                        <td align="center" ><h2 class="font">{{this.fromgateway}}</h2></td>
                                    </tr>
                               </table>
                          </div>
@@ -264,13 +269,23 @@
                          <div class="card-header">
                               <table class="{{this.colortextCard}}" style="width:100%">
                                    <tr>
-                                        <td align="left"><img src="./assets/images/icons8-satellite-signal-80.png" width="40px"></td>
-                                        <td><h1 class="font {{this.colortextCard}}">สัญญาณจากเกตเวย์</h1></td>
+                                        <td align="left"><img src="./assets/images/icons8-frequency-64.png" width="40px"></td>
+                                        <td><h1 class="font">คลื่นความถี่</h1></td>
                                    </tr>
                               </table>
                          </div>
                          <div class="card-body">
-                              <h3 class="font {{this.colortextCard}}" align="center">{{this.fromgateway}}</h3>
+                              <table class="font {{this.colortextCard}}" style="width:100%">
+                                   <tr>
+                                        <td align="center"><h2 class="font">{{this.mean_frequency}}</h2></td>
+                                   </tr>
+                              </table>
+                              <table class="font {{this.colortextCard}}" style="width:100%">
+                                   <tr>
+                                        <td align="left" >หน่วย</td>
+                                        <td align="right">Mhz</td>
+                                   </tr>
+                              </table>
                          </div>
                     </div>
                </div>
