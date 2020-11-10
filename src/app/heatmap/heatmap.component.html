@@ -21,17 +21,20 @@
   <a id="myLocation" type="button" (click)="myLocation()"><img src="./assets/images/icons8-location-update-96.png"  width="60px"></a>
 
   <div id="changSF" class="controls mode-selector">
-    <input type="radio" name="type" (click)="sf7()" checked="{{checkedsf7}}"/>
+    <input type="radio" name="type" (click)="sf7()" checked="checked"/>
     <label for="changemode-walking">sf 7</label> &nbsp;
   
-    <input type="radio" name="type" (click)="sf9()" checked="{{checkedsf9}}" />
+    <input type="radio" name="type" (click)="sf9()"/>
     <label for="changemode-transit">sf 9</label> &nbsp;
   
-    <input type="radio" name="type" (click)="sf12()" checked="{{checkedsf12}}" />
+    <input type="radio" name="type" (click)="sf12()"/>
     <label for="changemode-driving">sf 12</label> &nbsp;
     
-    <input type="radio" name="type" (click)="Allsf()" checked="{{checkedAll}}" />
+    <input type="radio" name="type" (click)="Allsf()"/>
     <label for="changemode-driving">All sf</label> 
+
+    <input type="radio" name="type" (click)="toggleHeatmap()"/>
+    <label for="changemode-driving">hide</label> 
   </div>
   
   <!-- <agm-marker 
@@ -51,13 +54,21 @@
 
 
   <agm-marker 
-    *ngFor="let m of markers; let i = index"
-    [latitude]="m.lat"
-    [longitude]="m.lng"
-    [label]="m.label"
-    animation="DROP">
+    [latitude]=16.246627494203636
+    [longitude]=103.25215825338576
+    [iconUrl]="{url: './assets/images/wifi.png',labelOrigin:{x:22.5,y:20}, scaledSize: {height: 55,width: 55}}"
+    animation="BOUNCE">
     <agm-info-window>
-      <strong>Gateway</strong>
+      <strong>Gateway 2</strong>
+    </agm-info-window>
+  </agm-marker>
+  <agm-marker 
+    [latitude]=16.240459186712496
+    [longitude]=103.25696399125086
+    [iconUrl]="{url: './assets/images/wifi.png',labelOrigin:{x:22.5,y:20}, scaledSize: {height: 55,width: 55}}"
+    animation="BOUNCE">
+    <agm-info-window>
+      <strong>Gateway 1</strong>
     </agm-info-window>
   </agm-marker>
 
