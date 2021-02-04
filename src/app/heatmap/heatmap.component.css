@@ -8,6 +8,22 @@ agm-map {
     position: absolute;
 }
 
+
+.font{
+    font-family: 'Itim', cursive;
+    font-size: 20px;
+}
+.font1{
+    font-family: 'Itim', cursive;
+    font-size: 15px;
+    text-align: justify;
+    text-justify: inter-word;
+    text-align: justify;
+    color: rgb(255, 255, 255);
+    width: 235px;
+}
+
+
 .right {
     float: right;
 }
