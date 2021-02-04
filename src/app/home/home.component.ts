@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {SelectItem} from 'primeng/api';
+import { SelectItem} from 'primeng/api';
 
 interface City {
   name: string;
@@ -14,6 +14,8 @@ interface City {
 })
 
 export class HomeComponent implements OnInit {
+
+  date1: Date;
 
   latitude = 16.240584;
   longitude = 103.2569;
@@ -48,7 +50,9 @@ export class HomeComponent implements OnInit {
   backgroundColor = "bg-light";
   backgrountextdColor = "";
 
-  constructor(private http: HttpClient) {} 
+  constructor(private http: HttpClient) {
+    console.log(this.date1);
+  } 
 
   async ngOnInit() {
     var item = JSON.parse(sessionStorage.getItem('info'));
@@ -73,6 +77,10 @@ export class HomeComponent implements OnInit {
       this.maxdistanceGW2 = item.maxdistanceGW2;
     }
     
+  }
+
+  bt(){
+    console.log(this.date1);
   }
 
   closeNav() {

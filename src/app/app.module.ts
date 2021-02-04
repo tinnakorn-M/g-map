@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component'; 
 import { AgmCoreModule } from '@agm/core'; // Modules GoogleMap in Angular
 import { ToolbarModule } from 'primeng/toolbar';
-import {ButtonModule} from 'primeng/button';
+import { ButtonModule} from 'primeng/button';
 import { AccordionModule } from 'primeng/accordion';     //accordion and accordion tab
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenuItem } from 'primeng/api';                  //api
@@ -15,11 +15,13 @@ import { HeatmapComponent } from './heatmap/heatmap.component';
 import { FooterComponent } from './footer/footer.component';
 import { MapComponent } from './map/map.component';
 import { Routes, RouterModule } from '@angular/router';
-import {PanelModule} from 'primeng/panel';
-import {CardModule} from 'primeng/card';
-
+import { PanelModule} from 'primeng/panel';
+import { CardModule} from 'primeng/card';
 import { MatIconModule } from '@angular/material/icon';
-import {DropdownModule} from 'primeng/dropdown';
+import { DropdownModule} from 'primeng/dropdown';
+
+import { CalendarModule } from 'primeng/calendar';
+import { FormsModule } from '@angular/forms';
 
 export const routes: Routes = [
   {path: '',component:HeatmapComponent},
@@ -41,6 +43,7 @@ export const routes: Routes = [
     
   ],
   imports: [
+    
     DropdownModule,
     MatIconModule,
     BrowserModule,
@@ -51,6 +54,8 @@ export const routes: Routes = [
     CardModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    CalendarModule,
+    FormsModule,
     RouterModule.forRoot(routes),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBqQrWQglp2FubxYUX_Ta3QkOJLF5bMQNg',
