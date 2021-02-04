@@ -20,18 +20,18 @@
   <a id="home" type="button" routerLink="/home"><img src="./assets/images/icons8-home-automation-64.png"  width="60px"></a>
   <a id="myLocation" type="button" (click)="myLocation()"><img src="./assets/images/icons8-location-update-96.png"  width="60px"></a>
 
-  <div id="changSF" class="controls mode-selector">
+  <div id="changSF" class="controls mode-selector" style="background-color: rgb(82, 118, 235);">
     <input type="radio" name="type" (click)="sf7()" checked="checked"/>
-    <label for="changemode-walking">sf 7</label> &nbsp;
+    <label for="changemode-walking">SF 7</label> &nbsp;
   
     <input type="radio" name="type" (click)="sf9()"/>
-    <label for="changemode-transit">sf 9</label> &nbsp;
+    <label for="changemode-transit">SF 9</label> &nbsp;
   
     <input type="radio" name="type" (click)="sf12()"/>
-    <label for="changemode-driving">sf 12</label> &nbsp;
+    <label for="changemode-driving">SF 12</label> &nbsp;
     
     <input type="radio" name="type" (click)="Allsf()"/>
-    <label for="changemode-driving">All sf</label> 
+    <label for="changemode-driving">All SF</label> &nbsp;
 
     <input type="radio" name="type" (click)="toggleHeatmap()"/>
     <label for="changemode-driving">hide</label> 
