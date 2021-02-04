@@ -128,6 +128,13 @@ export class HeatmapComponent implements OnInit {
     this.toggleHeatmap();
     await this.SmartLocation();
   }
+
+  async DataCollDemo(){
+    this.sf = 10;
+    this.toggleHeatmap();
+    await this.SmartLocation();
+  }
+  
   toggleHeatmap() {
     this.heatmap.setMap(this.heatmap.getMap() ? null : this.map);
   }
@@ -161,6 +168,7 @@ export class HeatmapComponent implements OnInit {
     this.map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(document.getElementById('myLocation'));
     this.map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(document.getElementById('home'));
     this.map.controls[google.maps.ControlPosition.RIGHT_TOP].push(document.getElementById('changSF'));
+    this.map.controls[google.maps.ControlPosition.LEFT_TOP].push(document.getElementById('DataCollDemo'));
 
     await this.SmartLocation();
   }
