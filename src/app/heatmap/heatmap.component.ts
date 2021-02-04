@@ -169,6 +169,8 @@ export class HeatmapComponent implements OnInit {
     this.map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(document.getElementById('home'));
     this.map.controls[google.maps.ControlPosition.RIGHT_TOP].push(document.getElementById('changSF'));
     this.map.controls[google.maps.ControlPosition.LEFT_TOP].push(document.getElementById('DataCollDemo'));
+    this.map.controls[google.maps.ControlPosition.RIGHT_TOP].push(document.getElementById('DetailSF'));
+    this.map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(document.getElementById('showlabel1'));
 
     await this.SmartLocation();
   }
